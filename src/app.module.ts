@@ -1,9 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmployeeModule } from './employee/employee.module';
+import { Employee } from './employee/employee.entity';
 
 @Module({
-  imports: [EmployeeModule],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      url: 'mongodb://localhost:27017/employee_db',
+      database: 'employee_db',
+      entities: [Employee],
+      synchronize: true,
+      // useUnifiedTopology: true, <-- remove this
+    }),
+    EmployeeModule,
+  ],
 })
 export class AppModule {}
