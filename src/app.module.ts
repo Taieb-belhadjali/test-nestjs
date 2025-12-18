@@ -11,7 +11,6 @@ import { Employee } from './employee/employee.entity';
       database: 'employee_db',
       entities: [Employee],
       synchronize: true,
-      // useUnifiedTopology: true, <-- remove this
     }),
     EmployeeModule,
   ],
